@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --shrek-green: #5A8A00;
+    --shrek-green-dark: #3D5F00;
+    --swamp-brown: #7B5C2E;
+    --onion-cream: #F5EDD0;
+    --fairytale-gold: #E8A020;
+    --bg-dark: #1C2910;
+    --text-light: #F5EDD0;
+  }
+
+  body {
+    @apply bg-bg-dark text-text-light font-nunito overflow-x-hidden;
+    background-image: radial-gradient(circle at 50% 50%, rgba(90, 138, 0, 0.05) 0%, transparent 100%);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-luckiest tracking-wider;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-shrek-green hover:bg-shrek-green-dark text-white rounded-2xl font-bold transition-all transform active:scale-95 shadow-lg shadow-shrek-green/20 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-swamp-brown hover:opacity-90 text-white rounded-2xl font-bold transition-all transform active:scale-95 shadow-lg shadow-swamp-brown/20;
+  }
+
+  .card {
+    @apply bg-onion-cream text-bg-dark p-4 rounded-3xl shadow-2xl border-2 border-swamp-brown/20;
+  }
+
+  .input-field {
+    @apply w-full bg-white/50 border-2 border-swamp-brown/30 rounded-xl px-4 py-2 focus:outline-none focus:border-shrek-green transition-colors text-bg-dark;
+  }
+
+  .waiting-screen {
+    @apply flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 animate-fade-in;
+  }
+
+  .loading-dots::after {
+    content: '...';
+    @apply animate-pulse;
+  }
+
+  .success-screen {
+    @apply flex flex-col items-center justify-center text-center space-y-4 py-10 animate-slide-up;
+  }
+}
+
+/* Custom noise overlay for swamp texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
